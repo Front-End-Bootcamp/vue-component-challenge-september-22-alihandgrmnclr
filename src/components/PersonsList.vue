@@ -6,7 +6,7 @@ const props = defineProps(["persons", "groupName"]);
 <template>
 	<h2>{{props.groupName}}</h2>
 	<div class="container">
-		<div :class="person.type==null ? 'student':'assistant', person.group " v-for="person in props.persons" class="card">
+		 <div :class="person.type==null ? 'student':'assistant', person.group " v-for="person in props.persons" class="card">	<!-- gerekli class atamalarını yaptım -->
 			<div class="card-header">
 				<p>{{person.name}}</p>
 			</div>
@@ -18,7 +18,8 @@ const props = defineProps(["persons", "groupName"]);
 	</div>
 </template>
 
-<style scoped>
+<!-- css kısmını scss ile daha düzenli hale getireceğim -->
+ <style scoped>	
 .Orchid {
 	border: 3px solid orchid;
 }
@@ -26,7 +27,6 @@ const props = defineProps(["persons", "groupName"]);
 .Orchid.assistant {
 	background-color: orchid;
 }
-
 
 .SteelBlue {
 	border: 3px solid steelblue;
@@ -62,8 +62,6 @@ const props = defineProps(["persons", "groupName"]);
 .LightSeaGreen.assistant {
 	background-color: LightSeaGreen;
 }
-
-
 
 .container {
 	display: grid;

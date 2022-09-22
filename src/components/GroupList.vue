@@ -4,9 +4,7 @@ const emits = defineEmits(["getGroupPersons"]);
 
 const getMembers = (groupName) => {
 	emits('getGroupPersons', groupName);
-
 }
-
 </script>
 
 <template>
