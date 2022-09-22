@@ -1,16 +1,17 @@
 <script setup>
-import Data from "@/components/Data/Data.json"
+import Data from "@/assets/Data/Data.json"
 import { ref } from "vue";
+import List from "./List.vue";
 const members = ref([]);
 const assistants = ref([]);
 
-function getGroupList() {
+function getGroupNames() {
 	const groupNames = Data.map(person => person.group);
 	const groups = [...new Set(groupNames)];
 	return groups;
 }
 
-const groupNames = getGroupList(); // grup isimleri bu değişkende tanımlı
+const groupNames = getGroupNames(); // grup isimleri bu değişkende tanımlı
 
 function filterByGroupName(GroupName) {
 	const check = Data.some(Data => Data.group == GroupName);	// grup adının var olup olmadığının kontrolü
@@ -39,30 +40,32 @@ function getSelectedGroup(groupName = "Orchid") { // default olarak Orchid grubu
 const selectedGroup = getSelectedGroup();
 
 const listedGroups = filterByGroupName(selectedGroup);
-const Group = ref(listedGroups.Group); //listedGroups.Group;
-const Assistant = ref(listedGroups.Assistant);
-const Students = ref(listedGroups.Students);
+const Group = ref(listedGroups.Group); // grup adı
+const Assistant = ref(listedGroups.Assistant); //asistan adı
+const Students = ref(listedGroups.Students); // öğrenciler 
 
 </script>
 
 
 <template>
 	<div>
+		<h1>Gruplar</h1>
 		<ul>
 			<li class="groups" v-for="groups in groupNames" @click="getSelectedGroup(groups)">{{groups}}</li>
 		</ul>
+		
+		<List :Group="Group" :Students="Students" :Assistant="Assistant"/>
 	</div>
-	<template v-if="listedGroups">
+	<!-- <template v-if="listedGroups">
 
 		<h2 class="group">{{Group}}</h2>
 		<ul>
 			<li class="assistant" v-for="assistant in Assistant">{{assistant}}</li>
 			<li class="student" v-for="student in Students">{{student}}</li>
 		</ul>
-
-	</template>
-
-
+		
+	</template> -->
+	
 </template>
 
 <style scoped>
