@@ -5,11 +5,12 @@ const emits = defineEmits(["getGroupPersons"]);
 const getMembers = (groupName) => {
 	emits('getGroupPersons', groupName);
 }
+
 </script>
 
 <template>
 	<ul>
-		<li class="groups" v-for="group in props.groupNames" @click="getMembers(group)">{{group}}</li>
+		<li class="groups" v-for="group in props.groupNames" :key="group" @click="getMembers(group)">{{group}}</li>
 	</ul>
 
 </template>

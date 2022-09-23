@@ -6,7 +6,7 @@ const props = defineProps(["persons", "groupName"]);
 <template>
 	<h2>{{props.groupName}}</h2>
 	<div class="container">
-		 <div :class="person.type==null ? 'student':'assistant', person.group " v-for="person in props.persons" class="card">	<!-- gerekli class atamalarını yaptım -->
+		 <div :class="[person.type==null ? 'student':'assistant', person.group ]" v-for="person in props.persons" :key="person.id" class="card">	<!-- gerekli class atamalarını yaptım -->
 			<div class="card__header">
 				<p>{{person.name}}</p>
 			</div>
